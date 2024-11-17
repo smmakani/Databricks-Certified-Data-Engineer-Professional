@@ -7,6 +7,11 @@
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC ###start the course
+
+# COMMAND ----------
+
 # MAGIC %run ../Includes/Copy-Datasets
 
 # COMMAND ----------
