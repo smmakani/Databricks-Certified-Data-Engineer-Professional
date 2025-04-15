@@ -1,0 +1,8 @@
+---  To view the status of system tables enabled or not 
+-- syntax databricks system-schemas list <METASTORE ID>
+databricks system-schemas list 188ba55a-6ed2-4d28-bbf7-44e5194f9add
+
+-- to enable system code tables
+--- syntax databricks system-schemas list <METASTORE ID> <schema name>
+databricks system-schemas enable 188ba55a-6ed2-4d28-bbf7-44e5194f9add 
+Schema Names: [  access, billing, compute, makeplace, query, lakeflow, --internal_logging, serving, storage, operational_data, lineage, information_schema) 
