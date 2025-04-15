@@ -7,11 +7,6 @@
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC ###start the course
-
-# COMMAND ----------
-
 # MAGIC %run ../Includes/Copy-Datasets
 
 # COMMAND ----------
@@ -40,7 +35,7 @@ def process_bronze():
                         .withColumn("timestamp", (F.col("timestamp")/1000).cast("timestamp"))  
                         .withColumn("year_month", F.date_format("timestamp", "yyyy-MM"))
                   .writeStream
-                      .option("checkpointLocation", "dbfs:/mnt/demo_pro/checkpoints/bronze")
+                      .option("checkpointLocation", f"{checkpoint_path}/bronze")
                       .option("mergeSchema", True)
                       .partitionBy("topic", "year_month")
                       .trigger(availableNow=True)

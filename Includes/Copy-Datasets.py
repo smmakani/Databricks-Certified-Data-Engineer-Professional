@@ -248,12 +248,14 @@ class CourseDataset:
 
 # COMMAND ----------
 
-data_source_uri = "wasbs://course-resources@dalhussein.blob.core.windows.net/DE-Pro/datasets/bookstore/v1/"
-dataset_bookstore = 'dbfs:/mnt/demo-datasets/DE-Pro/bookstore'
+data_source_uri = "s3://dalhussein-courses/DE-Pro/datasets/bookstore/v1/"
+dataset_bookstore = 's3://databricks-labwork/bookstore/'
 spark.conf.set(f"dataset.bookstore", dataset_bookstore)
-checkpoint_path = "dbfs:/mnt/demo_pro/checkpoints"
-data_catalog = 'hive_metastore'
-db_name = "bookstore_eng_pro"
+spark.conf.set("fs.s3a.endpoint", "s3.eu-west-3.amazonaws.com")
+spark.conf.set("fs.s3a.aws.credentials.provider", "org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider")
+checkpoint_path = "s3://databricks-labwork/bookstore/checkpoints/"
+data_catalog = 'labwork'
+db_name = "bookstore"
 
 bookstore = CourseDataset(data_source_uri, dataset_bookstore, checkpoint_path, data_catalog, db_name)
 bookstore.download_dataset()
